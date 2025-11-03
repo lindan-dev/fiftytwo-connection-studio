@@ -7,9 +7,9 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 py-12 lg:py-16">
+    <section className="min-h-screen flex items-center justify-center px-6 py-8 lg:py-12">
       <div className="container max-w-6xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 items-center">
           <div className="text-center lg:text-left animate-fade-in">
             <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               Because done is better than perfect ❤️
@@ -35,11 +35,11 @@ const Hero = () => {
               </Button>
             </div>
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center lg:justify-end">
             <img
               src={appMockup}
               alt="fiftytwoormore app showing streak calendar and milestones"
-              className="max-w-2xl w-full"
+              className="max-w-3xl w-full lg:w-[120%]"
             />
           </div>
         </div>
