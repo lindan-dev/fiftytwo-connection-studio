@@ -2,7 +2,7 @@ import progressCard from "@/assets/progress-card.png";
 
 const About = () => {
   return (
-    <section className="pt-4 pb-12 px-6">
+    <section className="py-8 px-6">
       <div className="container max-w-4xl mx-auto text-center">
         <h2 className="text-4xl lg:text-5xl font-bold mb-6">52 or more.</h2>
         <div className="space-y-4 text-lg lg:text-xl text-muted-foreground">

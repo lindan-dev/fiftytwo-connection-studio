@@ -94,7 +94,7 @@ const BetaSignup = () => {
   const seatsLeft = signupCount !== null ? Math.max(0, totalSeats - signupCount) : null;
 
   return (
-    <section id="beta-signup" className="py-20 px-6">
+    <section id="beta-signup" className="py-16 px-6">
       <div className="container max-w-2xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl lg:text-5xl font-bold mb-6">Join our closed beta.</h2>

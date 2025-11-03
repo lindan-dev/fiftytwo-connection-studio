@@ -20,12 +20,12 @@ const Features = () => {
   ];
 
   return (
-    <section id="features" className="py-12 px-6 bg-secondary/30">
+    <section id="features" className="py-16 px-6 bg-secondary/30">
       <div className="container max-w-6xl mx-auto">
         <h2 className="text-4xl lg:text-5xl font-bold text-center mb-4">
           Keep it simple, keep it private.
         </h2>
-        <p className="text-xl text-muted-foreground text-center mb-16">
+        <p className="text-xl text-muted-foreground text-center mb-12">
           Everything you need, nothing you don't.
         </p>
         <div className="grid md:grid-cols-3 gap-8">
