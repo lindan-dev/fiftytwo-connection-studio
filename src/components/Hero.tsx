@@ -10,7 +10,7 @@ const Hero = () => {
     <section className="min-h-screen flex items-center justify-center px-6 py-8 lg:py-12">
       <div className="container max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-8 items-center">
-          <div className="text-center lg:text-left animate-fade-in">
+          <div className="text-center lg:text-left animate-fade-in relative z-10">
             <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               Because done is better than perfect ❤️
             </h1>
@@ -35,7 +35,7 @@ const Hero = () => {
               </Button>
             </div>
           </div>
-          <div className="flex justify-center lg:justify-end">
+          <div className="flex justify-center lg:justify-end relative z-0">
             <img
               src={appMockup}
               alt="fiftytwoormore app showing streak calendar and milestones"
