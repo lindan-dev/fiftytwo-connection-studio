@@ -7,6 +7,7 @@ import Testimonials from "@/components/Testimonials";
 import BetaSignup from "@/components/BetaSignup";
 import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -20,6 +21,7 @@ const Index = () => {
       <BetaSignup />
       <FAQ />
       <FinalCTA />
+      <Footer />
     </main>
   );
 };
