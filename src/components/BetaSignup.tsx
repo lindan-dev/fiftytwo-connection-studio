@@ -10,7 +10,6 @@ const signupSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
   email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
   partnerName: z.string().trim().max(100, "Partner name must be less than 100 characters").optional(),
-  relationshipDuration: z.string().trim().max(100, "Relationship duration must be less than 100 characters").optional(),
 });
 
 const BetaSignup = () => {
@@ -19,7 +18,6 @@ const BetaSignup = () => {
     name: "",
     email: "",
     partnerName: "",
-    relationshipDuration: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -54,7 +52,6 @@ const BetaSignup = () => {
         name: validatedData.name,
         email: validatedData.email,
         partner_name: validatedData.partnerName || null,
-        relationship_duration: validatedData.relationshipDuration || null,
       });
 
       if (error) throw error;
@@ -69,7 +66,7 @@ const BetaSignup = () => {
       if (signupCount !== null) {
         setSignupCount(signupCount + 1);
       }
-      setFormData({ name: "", email: "", partnerName: "", relationshipDuration: "" });
+      setFormData({ name: "", email: "", partnerName: "" });
     } catch (error) {
       console.error("Error submitting beta signup:", error);
       
@@ -150,16 +147,6 @@ const BetaSignup = () => {
               value={formData.partnerName}
               onChange={(e) => setFormData({ ...formData, partnerName: e.target.value })}
               placeholder="Alex"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="relationshipDuration">How long have you been together? (optional)</Label>
-            <Input
-              id="relationshipDuration"
-              value={formData.relationshipDuration}
-              onChange={(e) => setFormData({ ...formData, relationshipDuration: e.target.value })}
-              placeholder="e.g., 3 years"
             />
           </div>
 
