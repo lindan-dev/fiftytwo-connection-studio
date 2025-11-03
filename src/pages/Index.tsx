@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Features from "@/components/Features";
 import TherapyCallout from "@/components/TherapyCallout";
+import CalendarPreview from "@/components/CalendarPreview";
 import Testimonials from "@/components/Testimonials";
 import BetaSignup from "@/components/BetaSignup";
 import FAQ from "@/components/FAQ";
@@ -14,6 +15,7 @@ const Index = () => {
       <About />
       <Features />
       <TherapyCallout />
+      <CalendarPreview />
       <Testimonials />
       <BetaSignup />
       <FAQ />
