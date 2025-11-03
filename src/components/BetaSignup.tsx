@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -23,6 +23,23 @@ const BetaSignup = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [signupCount, setSignupCount] = useState<number | null>(null);
+  const totalSeats = 100;
+
+  useEffect(() => {
+    const fetchSignupCount = async () => {
+      try {
+        const { data, error } = await supabase.functions.invoke('get-beta-signups-count');
+        if (!error && data) {
+          setSignupCount(data.count);
+        }
+      } catch (error) {
+        console.error('Failed to fetch signup count');
+      }
+    };
+
+    fetchSignupCount();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,7 +65,10 @@ const BetaSignup = () => {
         description: "We'll get back to you within a few days.",
       });
       
-      // Reset form
+      // Update count and reset form
+      if (signupCount !== null) {
+        setSignupCount(signupCount + 1);
+      }
       setFormData({ name: "", email: "", partnerName: "", relationshipDuration: "" });
     } catch (error) {
       console.error("Error submitting beta signup:", error);
@@ -71,6 +91,8 @@ const BetaSignup = () => {
     }
   };
 
+  const seatsLeft = signupCount !== null ? Math.max(0, totalSeats - signupCount) : null;
+
   return (
     <section id="beta-signup" className="py-20 px-6">
       <div className="container max-w-2xl mx-auto">
@@ -80,6 +102,16 @@ const BetaSignup = () => {
             <p>
               We're inviting 100 couples to test fiftytwoormore before launch.
             </p>
+            {seatsLeft !== null && seatsLeft > 0 && (
+              <p className="text-xl font-bold text-primary">
+                Only {seatsLeft} {seatsLeft === 1 ? 'seat' : 'seats'} left - sign up now!
+              </p>
+            )}
+            {seatsLeft === 0 && (
+              <p className="text-xl font-bold text-muted-foreground">
+                Beta is now full - join the waitlist!
+              </p>
+            )}
             <p>
               You'll get early access, and we'll get your honest feedback to make it even better.
             </p>
