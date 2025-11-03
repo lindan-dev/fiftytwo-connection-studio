@@ -39,7 +39,7 @@ const Hero = () => {
             <img
               src={appMockup}
               alt="fiftytwoormore app showing streak calendar and milestones"
-              className="max-w-3xl w-full lg:w-[120%]"
+              className="max-w-2xl w-full lg:w-[85%]"
             />
           </div>
         </div>
