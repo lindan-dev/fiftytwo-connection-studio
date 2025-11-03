@@ -6,7 +6,7 @@ const FinalCTA = () => {
   };
 
   return (
-    <section className="py-20 px-6">
+    <section className="py-12 px-6">
       <div className="container max-w-4xl mx-auto text-center">
         <h2 className="text-4xl lg:text-6xl font-bold mb-6">
           Reconnect. Laugh. Keep it real.

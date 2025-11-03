@@ -20,7 +20,7 @@ const Features = () => {
   ];
 
   return (
-    <section id="features" className="py-20 px-6 bg-secondary/30">
+    <section id="features" className="py-12 px-6 bg-secondary/30">
       <div className="container max-w-6xl mx-auto">
         <h2 className="text-4xl lg:text-5xl font-bold text-center mb-4">
           Keep it simple, keep it private.

@@ -35,7 +35,7 @@ const Hero = () => {
               </Button>
             </div>
           </div>
-          <div className="flex justify-center animate-float">
+          <div className="flex justify-center">
             <img
               src={appMockup}
               alt="fiftytwoormore app showing streak calendar and milestones"
