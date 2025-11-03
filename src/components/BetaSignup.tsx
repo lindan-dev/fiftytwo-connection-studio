@@ -3,6 +3,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
+
+const signupSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  partnerName: z.string().trim().max(100, "Partner name must be less than 100 characters").optional(),
+  relationshipDuration: z.string().trim().max(100, "Relationship duration must be less than 100 characters").optional(),
+});
 
 const BetaSignup = () => {
   const { toast } = useToast();
@@ -13,14 +22,53 @@ const BetaSignup = () => {
     relationshipDuration: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, this would submit to a backend
-    toast({
-      title: "Thanks for joining! ❤️",
-      description: "We'll get back to you within a few days.",
-    });
-    setFormData({ name: "", email: "", partnerName: "", relationshipDuration: "" });
+    setIsSubmitting(true);
+
+    try {
+      // Validate form data
+      const validatedData = signupSchema.parse(formData);
+
+      // Insert into database
+      const { error } = await supabase.from("beta_signups").insert({
+        name: validatedData.name,
+        email: validatedData.email,
+        partner_name: validatedData.partnerName || null,
+        relationship_duration: validatedData.relationshipDuration || null,
+      });
+
+      if (error) throw error;
+
+      // Success
+      toast({
+        title: "Thanks for joining! ❤️",
+        description: "We'll get back to you within a few days.",
+      });
+      
+      // Reset form
+      setFormData({ name: "", email: "", partnerName: "", relationshipDuration: "" });
+    } catch (error) {
+      console.error("Error submitting beta signup:", error);
+      
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Validation Error",
+          description: error.errors[0].message,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Something went wrong",
+          description: "Please try again later.",
+          variant: "destructive",
+        });
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -83,8 +131,8 @@ const BetaSignup = () => {
             />
           </div>
 
-          <Button type="submit" size="lg" className="w-full text-lg">
-            Apply for Beta Access ❤️
+          <Button type="submit" size="lg" className="w-full text-lg" disabled={isSubmitting}>
+            {isSubmitting ? "Submitting..." : "Apply for Beta Access ❤️"}
           </Button>
 
           <p className="text-sm text-muted-foreground text-center">
