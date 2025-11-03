@@ -1,3 +1,5 @@
+import progressCard from "@/assets/progress-card.png";
+
 const About = () => {
   return (
     <section className="py-20 px-6">
@@ -7,10 +9,12 @@ const About = () => {
           <p>The challenge? Once a week, every week — or more if you can.</p>
           <p>Log it, keep your streak, and celebrate consistency — not perfection.</p>
         </div>
-        <div className="mt-12 bg-primary/10 rounded-2xl p-8 lg:p-12">
-          <div className="text-6xl font-bold text-primary mb-2">23</div>
-          <div className="text-2xl font-semibold">weeks</div>
-          <div className="mt-4 text-muted-foreground">Your streak, your story</div>
+        <div className="mt-12 flex justify-center">
+          <img
+            src={progressCard}
+            alt="Progress tracking showing 41/52 this year"
+            className="w-full max-w-3xl rounded-2xl shadow-card"
+          />
         </div>
       </div>
     </section>
