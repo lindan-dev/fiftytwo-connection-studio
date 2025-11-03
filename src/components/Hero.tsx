@@ -7,7 +7,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 py-20 lg:py-32">
+    <section className="min-h-screen flex items-center justify-center px-6 py-12 lg:py-16">
       <div className="container max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="text-center lg:text-left animate-fade-in">
