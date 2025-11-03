@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import heroMockup from "@/assets/hero-mockup.jpg";
+import appMockup from "@/assets/app-mockup.png";
 
 const Hero = () => {
   const scrollToSection = (id: string) => {
@@ -37,9 +37,9 @@ const Hero = () => {
           </div>
           <div className="flex justify-center animate-float">
             <img
-              src={heroMockup}
-              alt="fiftytwoormore app showing streak calendar"
-              className="max-w-md w-full rounded-3xl shadow-card"
+              src={appMockup}
+              alt="fiftytwoormore app showing streak calendar and milestones"
+              className="max-w-2xl w-full"
             />
           </div>
         </div>

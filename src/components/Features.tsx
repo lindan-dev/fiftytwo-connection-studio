@@ -1,6 +1,4 @@
 import { Flame, Lock, Cake } from "lucide-react";
-import milestoneScreen from "@/assets/milestone-screen.jpg";
-import privacyScreen from "@/assets/privacy-screen.jpg";
 
 const Features = () => {
   const features = [
@@ -8,19 +6,16 @@ const Features = () => {
       icon: Flame,
       title: "Your streak, your story",
       description: "Track how often you make time for each other. No pressure, just progress.",
-      image: milestoneScreen,
     },
     {
       icon: Lock,
       title: "Private. Always.",
       description: "Only you two can see your data. No tracking, no ads, no bullshit.",
-      image: privacyScreen,
     },
     {
       icon: Cake,
       title: "Celebrate milestones",
       description: "Birthdays, anniversaries, and all the small wins that matter.",
-      image: milestoneScreen,
     },
   ];
 
@@ -44,12 +39,7 @@ const Features = () => {
                 <feature.icon className="w-8 h-8 text-primary" />
               </div>
               <h3 className="text-2xl font-semibold mb-4">{feature.title}</h3>
-              <p className="text-muted-foreground mb-6">{feature.description}</p>
-              <img
-                src={feature.image}
-                alt={feature.title}
-                className="w-full rounded-xl shadow-soft"
-              />
+              <p className="text-muted-foreground">{feature.description}</p>
             </div>
           ))}
         </div>
