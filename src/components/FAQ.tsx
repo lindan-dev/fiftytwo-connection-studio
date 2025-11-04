@@ -12,6 +12,10 @@ const FAQ = () => {
       answer: "It's about connection. But yes, that too. We believe intimacy is a crucial part of a healthy relationship, and that includes physical connection. The app helps you make time for it without being weird about it.",
     },
     {
+      question: "Why 52?",
+      answer: "Because there are 52 weeks in a year — and research suggests that connecting about once a week is enough to keep couples happy and close. More can be great, but it doesn't make you happier. fiftytwoormore is built around that simple rhythm: a gentle reminder to show up for each other once a week. If you manage that, you're already doing better than most.",
+    },
+    {
       question: "Who can see our data?",
       answer: "Only you and your partner. We don't track your data, sell it, or share it with anyone. Your streak is yours. Period.",
     },
