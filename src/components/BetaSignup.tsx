@@ -87,6 +87,13 @@ const BetaSignup = () => {
           description: error.errors[0].message,
           variant: "destructive"
         });
+      } else if ((error as any)?.code === '23505') {
+        // Duplicate email error
+        toast({
+          title: "Email already registered",
+          description: "This email has already been signed up for the beta.",
+          variant: "destructive"
+        });
       } else {
         toast({
           title: "Something went wrong",
