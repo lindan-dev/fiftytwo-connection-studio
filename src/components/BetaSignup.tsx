@@ -55,11 +55,20 @@ const BetaSignup = () => {
       });
       if (error) throw error;
 
-      // Success
+      // Success - show toast
       toast({
         title: "Thanks for joining! ❤️",
         description: "We'll get back to you within a few days."
       });
+
+      // Send notification email (don't wait for it)
+      supabase.functions.invoke('notify-beta-signup', {
+        body: {
+          name: validatedData.name,
+          email: validatedData.email,
+          partnerName: validatedData.partnerName
+        }
+      }).catch(err => console.error('Failed to send notification:', err));
 
       // Update count and reset form
       if (signupCount !== null) {
