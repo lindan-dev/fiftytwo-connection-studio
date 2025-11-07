@@ -1,1 +1,7 @@
 project_id = "jirxaotwaifkdpzinbdb"
+
+[functions.check-beta-status]
+verify_jwt = false
+
+[functions.check-unconverted-signups]
+verify_jwt = false
