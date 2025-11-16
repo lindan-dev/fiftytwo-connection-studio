@@ -71,7 +71,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send notification email
     const emailResponse = await resend.emails.send({
-      from: "fiftytwoormore <noreply@lindaninc.com>",
+      from: "fiftytwoormore <noreply@updates.lindaninc.com>",
       to: ["fiftytwoormore@lindaninc.com"],
       subject: `Beta Signups Pending Conversion - ${unconvertedUsers.length} user${unconvertedUsers.length > 1 ? 's' : ''}`,
       html: emailHtml,
