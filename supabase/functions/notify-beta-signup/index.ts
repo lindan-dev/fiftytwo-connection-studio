@@ -25,7 +25,7 @@ const handler = async (req: Request): Promise<Response> => {
     console.log(`Sending notification for new beta signup: ${email}`);
 
     const emailResponse = await resend.emails.send({
-      from: "fiftytwoormore <noreply@lindaninc.com>",
+      from: "fiftytwoormore <noreply@updates.lindaninc.com>",
       to: ["fiftytwoormore@lindaninc.com"],
       subject: "New Beta Signup - fiftytwoormore",
       html: `
