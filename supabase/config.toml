@@ -5,3 +5,9 @@ verify_jwt = false
 
 [functions.check-unconverted-signups]
 verify_jwt = false
+
+[functions.send-user-reminders]
+verify_jwt = false
+
+[functions.cleanup-expired-signups]
+verify_jwt = false
