@@ -18,13 +18,13 @@ const Index = () => {
       <Hero />
       <About />
       <HowItWorks />
-      <InlineCTA label="Try it with your partner" reassurance="Free during beta. No credit card." />
+      <InlineCTA label="Try it with your partner ❤️" reassurance="Free during beta. No credit card." />
       <WhyTrack />
       <Features />
       <TherapyCallout />
       <CalendarPreview />
       <Testimonials />
-      <InlineCTA label="Get early access" reassurance="Only you and your partner can see this." />
+      <InlineCTA label="Get early access 🎉" reassurance="Only you and your partner can see this." />
       <BetaSignup />
       <FAQ />
       <FinalCTA />
