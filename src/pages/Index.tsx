@@ -9,6 +9,7 @@ import CalendarPreview from "@/components/CalendarPreview";
 import Testimonials from "@/components/Testimonials";
 import BetaSignup from "@/components/BetaSignup";
 import FAQ from "@/components/FAQ";
+import PrivacyTrust from "@/components/PrivacyTrust";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 
@@ -27,6 +28,7 @@ const Index = () => {
       <InlineCTA label="Get early access" reassurance="Only you and your partner can see this." />
       <BetaSignup />
       <FAQ />
+      <PrivacyTrust />
       <FinalCTA />
       <Footer />
     </main>
