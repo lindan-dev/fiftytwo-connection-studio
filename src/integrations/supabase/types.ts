@@ -20,33 +20,39 @@ export type Database = {
           app_signup_completed_at: string | null
           created_at: string
           email: string
+          first_reminder_sent: boolean | null
           id: string
           name: string
           partner_name: string | null
           relationship_duration: string | null
           reminder_sent: boolean | null
+          second_reminder_sent: boolean | null
         }
         Insert: {
           app_signup_completed?: boolean | null
           app_signup_completed_at?: string | null
           created_at?: string
           email: string
+          first_reminder_sent?: boolean | null
           id?: string
           name: string
           partner_name?: string | null
           relationship_duration?: string | null
           reminder_sent?: boolean | null
+          second_reminder_sent?: boolean | null
         }
         Update: {
           app_signup_completed?: boolean | null
           app_signup_completed_at?: string | null
           created_at?: string
           email?: string
+          first_reminder_sent?: boolean | null
           id?: string
           name?: string
           partner_name?: string | null
           relationship_duration?: string | null
           reminder_sent?: boolean | null
+          second_reminder_sent?: boolean | null
         }
         Relationships: []
       }
