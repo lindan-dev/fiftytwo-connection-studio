@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import HowItWorks from "@/components/HowItWorks";
+import InlineCTA from "@/components/InlineCTA";
 import WhyTrack from "@/components/WhyTrack";
 import Features from "@/components/Features";
 import TherapyCallout from "@/components/TherapyCallout";
@@ -17,11 +18,13 @@ const Index = () => {
       <Hero />
       <About />
       <HowItWorks />
+      <InlineCTA label="Try it with your partner" reassurance="Free during beta. No credit card." />
       <WhyTrack />
       <Features />
       <TherapyCallout />
       <CalendarPreview />
       <Testimonials />
+      <InlineCTA label="Get early access" reassurance="Only you and your partner can see this." />
       <BetaSignup />
       <FAQ />
       <FinalCTA />
