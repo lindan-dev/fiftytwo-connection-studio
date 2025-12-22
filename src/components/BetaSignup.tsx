@@ -156,9 +156,11 @@ const BetaSignup = () => {
             {isSubmitting ? "Submitting..." : "Apply for Beta Access ❤️"}
           </Button>
 
-          <p className="text-sm text-muted-foreground text-center">
-            We'll get back to you within a few days.
-          </p>
+          <ul className="text-sm text-muted-foreground text-center space-y-1">
+            <li>Private by default</li>
+            <li>No explicit details</li>
+            <li>No advice, no judgment</li>
+          </ul>
         </form>
       </div>
     </section>;

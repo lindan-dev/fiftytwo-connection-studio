@@ -17,8 +17,10 @@ const FinalCTA = () => {
           <Button size="lg" className="text-lg px-8" onClick={scrollToSignup}>
             Join the closed beta ❤️
           </Button>
-          
         </div>
+        <p className="mt-4 text-sm text-muted-foreground">
+          Only you and your partner can see this.
+        </p>
       </div>
     </section>;
 };
