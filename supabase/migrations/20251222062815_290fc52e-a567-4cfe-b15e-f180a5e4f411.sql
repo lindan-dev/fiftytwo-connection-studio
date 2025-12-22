@@ -1,0 +1,1 @@
+ALTER TABLE public.beta_signups DROP COLUMN reminder_sent;

@@ -25,7 +25,6 @@ export type Database = {
           name: string
           partner_name: string | null
           relationship_duration: string | null
-          reminder_sent: boolean | null
           second_reminder_sent: boolean | null
           third_reminder_sent: boolean | null
         }
@@ -39,7 +38,6 @@ export type Database = {
           name: string
           partner_name?: string | null
           relationship_duration?: string | null
-          reminder_sent?: boolean | null
           second_reminder_sent?: boolean | null
           third_reminder_sent?: boolean | null
         }
@@ -53,7 +51,6 @@ export type Database = {
           name?: string
           partner_name?: string | null
           relationship_duration?: string | null
-          reminder_sent?: boolean | null
           second_reminder_sent?: boolean | null
           third_reminder_sent?: boolean | null
         }

@@ -3,7 +3,7 @@ project_id = "jirxaotwaifkdpzinbdb"
 [functions.check-beta-status]
 verify_jwt = false
 
-[functions.check-unconverted-signups]
+[functions.notify-beta-signup]
 verify_jwt = false
 
 [functions.send-user-reminders]
