@@ -12,10 +12,14 @@ const WhyTrack = () => {
           We track everything that matters. Except this.
         </h2>
         
-        <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+        <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
           Somewhere along the way, life goes on autopilot. Work, kids, exhaustion—and 
           suddenly you realize it's been... a while. Not because anything's wrong. 
           Just because no one was paying attention.
+        </p>
+
+        <p className="text-base text-muted-foreground/80 italic mb-8">
+          We built this for ourselves first. We know how easy it is for intimacy to slip into the background.
         </p>
 
         <div className="mb-8">
