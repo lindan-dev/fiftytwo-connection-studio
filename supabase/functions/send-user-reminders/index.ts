@@ -12,6 +12,7 @@ const corsHeaders = {
 const FIRST_REMINDER_DAYS = 2;
 const SECOND_REMINDER_DAYS = 7;
 const THIRD_REMINDER_DAYS = 14;
+const ADMIN_EMAIL = "fiftytwoormore@lindaninc.com";
 
 // Day 2: Gentle check-in
 const getFirstReminderEmail = (name: string) => ({
@@ -170,6 +171,7 @@ const handler = async (req: Request): Promise<Response> => {
       const { error: emailError } = await resend.emails.send({
         from: "fiftytwoormore <noreply@updates.lindaninc.com>",
         to: [user.email],
+        cc: [ADMIN_EMAIL],
         subject: emailContent.subject,
         html: emailContent.html,
       });
@@ -209,6 +211,7 @@ const handler = async (req: Request): Promise<Response> => {
       const { error: emailError } = await resend.emails.send({
         from: "fiftytwoormore <noreply@updates.lindaninc.com>",
         to: [user.email],
+        cc: [ADMIN_EMAIL],
         subject: emailContent.subject,
         html: emailContent.html,
       });
@@ -248,6 +251,7 @@ const handler = async (req: Request): Promise<Response> => {
       const { error: emailError } = await resend.emails.send({
         from: "fiftytwoormore <noreply@updates.lindaninc.com>",
         to: [user.email],
+        cc: [ADMIN_EMAIL],
         subject: emailContent.subject,
         html: emailContent.html,
       });
