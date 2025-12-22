@@ -34,6 +34,9 @@ const Hero = () => {
                 Learn more
               </Button>
             </div>
+            <p className="mt-4 text-sm text-muted-foreground">
+              Built for real couples. Used privately.
+            </p>
           </div>
           <div className="flex justify-center lg:justify-end relative z-0">
             <img
