@@ -11,12 +11,9 @@ const Hero = () => {
       <div className="container max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="text-center lg:text-left animate-fade-in relative z-10">
-            <h1 className="text-5xl lg:text-6xl font-bold mb-4 leading-tight">
+            <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               Because done is better than perfect ❤️
             </h1>
-            <p className="text-lg text-foreground/80 mb-4">
-              A private app for couples to log intimacy — once a week is enough.
-            </p>
             <p className="text-xl lg:text-2xl text-muted-foreground mb-8">
               The app for couples who want to make time for each other — and laugh about it too.
             </p>
@@ -26,7 +23,7 @@ const Hero = () => {
                 className="text-lg px-8"
                 onClick={() => scrollToSection("beta-signup")}
               >
-                Join the Private Beta
+                Join the Closed Beta 🔥
               </Button>
               <Button
                 size="lg"
@@ -37,9 +34,6 @@ const Hero = () => {
                 Learn more
               </Button>
             </div>
-            <p className="text-sm text-muted-foreground mt-4">
-              Built for real couples. Used privately.
-            </p>
           </div>
           <div className="flex justify-center lg:justify-end relative z-0">
             <img
