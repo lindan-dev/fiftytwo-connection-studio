@@ -27,6 +27,7 @@ export type Database = {
           relationship_duration: string | null
           reminder_sent: boolean | null
           second_reminder_sent: boolean | null
+          third_reminder_sent: boolean | null
         }
         Insert: {
           app_signup_completed?: boolean | null
@@ -40,6 +41,7 @@ export type Database = {
           relationship_duration?: string | null
           reminder_sent?: boolean | null
           second_reminder_sent?: boolean | null
+          third_reminder_sent?: boolean | null
         }
         Update: {
           app_signup_completed?: boolean | null
@@ -53,6 +55,7 @@ export type Database = {
           relationship_duration?: string | null
           reminder_sent?: boolean | null
           second_reminder_sent?: boolean | null
+          third_reminder_sent?: boolean | null
         }
         Relationships: []
       }

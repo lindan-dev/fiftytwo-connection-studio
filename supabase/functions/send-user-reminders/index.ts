@@ -9,25 +9,27 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const FIRST_REMINDER_DAYS = 7;
-const SECOND_REMINDER_DAYS = 14;
+const FIRST_REMINDER_DAYS = 2;
+const SECOND_REMINDER_DAYS = 7;
+const THIRD_REMINDER_DAYS = 14;
 
+// Day 2: Gentle check-in
 const getFirstReminderEmail = (name: string) => ({
-  subject: "Still thinking about it? 💭",
+  subject: "Quick check-in from Fiftytwoormore 💜",
   html: `
     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
       <h1 style="color: #333; font-size: 24px; margin-bottom: 20px;">Hey ${name},</h1>
       
       <p style="color: #555; font-size: 16px; line-height: 1.6;">
-        A week ago, you signed up for the Fiftytwoormore beta. We noticed you haven't downloaded the app yet—and that's totally okay.
+        Just a quick note—we noticed you signed up for the Fiftytwoormore beta a couple of days ago but haven't had a chance to download the app yet.
       </p>
       
       <p style="color: #555; font-size: 16px; line-height: 1.6;">
-        Life gets busy. We get it.
+        No rush at all. Life happens, and we totally get it.
       </p>
       
       <p style="color: #555; font-size: 16px; line-height: 1.6;">
-        But if you're still curious about a simple way to track intimacy with your partner—no quizzes, no coaching, just a quiet weekly log—your spot is still waiting.
+        Whenever you're ready, your spot is waiting. It only takes a minute to get started.
       </p>
       
       <div style="margin: 30px 0;">
@@ -37,7 +39,7 @@ const getFirstReminderEmail = (name: string) => ({
       </div>
       
       <p style="color: #555; font-size: 16px; line-height: 1.6;">
-        No pressure. Just a gentle nudge. 💜
+        Looking forward to having you both on board. 💜
       </p>
       
       <p style="color: #888; font-size: 14px; margin-top: 30px;">
@@ -47,7 +49,50 @@ const getFirstReminderEmail = (name: string) => ({
   `,
 });
 
+// Day 7: Friendly nudge with value reminder
 const getSecondReminderEmail = (name: string) => ({
+  subject: "Still thinking about it? We'd love to have you 💭",
+  html: `
+    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+      <h1 style="color: #333; font-size: 24px; margin-bottom: 20px;">Hey ${name},</h1>
+      
+      <p style="color: #555; font-size: 16px; line-height: 1.6;">
+        A week ago, you signed up for the Fiftytwoormore beta. We're still holding your spot—but wanted to check in.
+      </p>
+      
+      <p style="color: #555; font-size: 16px; line-height: 1.6;">
+        If you've been on the fence, here's what other couples are telling us:
+      </p>
+      
+      <ul style="color: #555; font-size: 16px; line-height: 1.8; padding-left: 20px;">
+        <li>"It's like a quiet nudge to stay connected—without any pressure."</li>
+        <li>"We didn't realize how much time had slipped by until we started tracking."</li>
+        <li>"Simple. Private. Actually helpful."</li>
+      </ul>
+      
+      <p style="color: #555; font-size: 16px; line-height: 1.6;">
+        No quizzes. No coaching. Just a simple weekly log to help you and your partner stay in sync.
+      </p>
+      
+      <div style="margin: 30px 0;">
+        <a href="https://fiftytwoormore.com" style="background-color: #7c3aed; color: white; padding: 14px 28px; text-decoration: none; border-radius: 25px; font-weight: 600; display: inline-block;">
+          Get Started Now
+        </a>
+      </div>
+      
+      <p style="color: #555; font-size: 16px; line-height: 1.6;">
+        Hope to see you inside soon. 💜
+      </p>
+      
+      <p style="color: #888; font-size: 14px; margin-top: 30px;">
+        — The Fiftytwoormore Team
+      </p>
+    </div>
+  `,
+});
+
+// Day 14: Final reminder with 2-day warning
+const getThirdReminderEmail = (name: string) => ({
   subject: "Your spot is about to open up 🌷",
   html: `
     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
@@ -99,23 +144,24 @@ const handler = async (req: Request): Promise<Response> => {
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
     const now = new Date();
-    const sevenDaysAgo = new Date(now.getTime() - FIRST_REMINDER_DAYS * 24 * 60 * 60 * 1000);
-    const fourteenDaysAgo = new Date(now.getTime() - SECOND_REMINDER_DAYS * 24 * 60 * 60 * 1000);
+    const twoDaysAgo = new Date(now.getTime() - FIRST_REMINDER_DAYS * 24 * 60 * 60 * 1000);
+    const sevenDaysAgo = new Date(now.getTime() - SECOND_REMINDER_DAYS * 24 * 60 * 60 * 1000);
+    const fourteenDaysAgo = new Date(now.getTime() - THIRD_REMINDER_DAYS * 24 * 60 * 60 * 1000);
 
-    // First reminder: 7+ days old, not completed, first reminder not sent
+    // First reminder: 2+ days old, not completed, first reminder not sent
     const { data: firstReminderUsers, error: firstError } = await supabase
       .from("beta_signups")
       .select("id, name, email")
       .eq("app_signup_completed", false)
       .eq("first_reminder_sent", false)
-      .lt("created_at", sevenDaysAgo.toISOString());
+      .lt("created_at", twoDaysAgo.toISOString());
 
     if (firstError) {
       console.error("Error fetching first reminder users:", firstError);
       throw firstError;
     }
 
-    console.log(`Found ${firstReminderUsers?.length || 0} users for first reminder`);
+    console.log(`Found ${firstReminderUsers?.length || 0} users for first reminder (day 2)`);
 
     // Send first reminders
     for (const user of firstReminderUsers || []) {
@@ -133,29 +179,28 @@ const handler = async (req: Request): Promise<Response> => {
         continue;
       }
 
-      console.log(`First reminder sent to ${user.email}`);
+      console.log(`First reminder (day 2) sent to ${user.email}`);
 
-      // Mark as sent
       await supabase
         .from("beta_signups")
         .update({ first_reminder_sent: true })
         .eq("id", user.id);
     }
 
-    // Second reminder: 14+ days old, not completed, second reminder not sent
+    // Second reminder: 7+ days old, not completed, second reminder not sent
     const { data: secondReminderUsers, error: secondError } = await supabase
       .from("beta_signups")
       .select("id, name, email")
       .eq("app_signup_completed", false)
       .eq("second_reminder_sent", false)
-      .lt("created_at", fourteenDaysAgo.toISOString());
+      .lt("created_at", sevenDaysAgo.toISOString());
 
     if (secondError) {
       console.error("Error fetching second reminder users:", secondError);
       throw secondError;
     }
 
-    console.log(`Found ${secondReminderUsers?.length || 0} users for second reminder`);
+    console.log(`Found ${secondReminderUsers?.length || 0} users for second reminder (day 7)`);
 
     // Send second reminders
     for (const user of secondReminderUsers || []) {
@@ -173,18 +218,57 @@ const handler = async (req: Request): Promise<Response> => {
         continue;
       }
 
-      console.log(`Second reminder sent to ${user.email}`);
+      console.log(`Second reminder (day 7) sent to ${user.email}`);
 
-      // Mark as sent
       await supabase
         .from("beta_signups")
         .update({ second_reminder_sent: true })
         .eq("id", user.id);
     }
 
+    // Third reminder: 14+ days old, not completed, third reminder not sent
+    const { data: thirdReminderUsers, error: thirdError } = await supabase
+      .from("beta_signups")
+      .select("id, name, email")
+      .eq("app_signup_completed", false)
+      .eq("third_reminder_sent", false)
+      .lt("created_at", fourteenDaysAgo.toISOString());
+
+    if (thirdError) {
+      console.error("Error fetching third reminder users:", thirdError);
+      throw thirdError;
+    }
+
+    console.log(`Found ${thirdReminderUsers?.length || 0} users for third reminder (day 14)`);
+
+    // Send third reminders
+    for (const user of thirdReminderUsers || []) {
+      const emailContent = getThirdReminderEmail(user.name);
+      
+      const { error: emailError } = await resend.emails.send({
+        from: "fiftytwoormore <noreply@updates.lindaninc.com>",
+        to: [user.email],
+        subject: emailContent.subject,
+        html: emailContent.html,
+      });
+
+      if (emailError) {
+        console.error(`Error sending third reminder to ${user.email}:`, emailError);
+        continue;
+      }
+
+      console.log(`Third reminder (day 14) sent to ${user.email}`);
+
+      await supabase
+        .from("beta_signups")
+        .update({ third_reminder_sent: true })
+        .eq("id", user.id);
+    }
+
     const summary = {
       firstReminders: firstReminderUsers?.length || 0,
       secondReminders: secondReminderUsers?.length || 0,
+      thirdReminders: thirdReminderUsers?.length || 0,
     };
 
     console.log("Completed send-user-reminders:", summary);
