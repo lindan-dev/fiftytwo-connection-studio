@@ -17,13 +17,8 @@ const WhyTrack = () => {
           </p>
 
           <p>
-            Not because tracking is the goal, but because it interrupts autopilot.
-            <br />
-            Tracking makes invisible patterns visible.
-            <br />
-            It reminds us why something matters.
-            <br />
-            It turns "we should" into "we noticed."
+            Not because tracking is the goal, but because it interrupts autopilot. Tracking makes invisible patterns
+            visible.It reminds us why something matters. It turns "we should" into "we noticed."
           </p>
 
           <p>
