@@ -34,19 +34,11 @@ const WhyTrack = () => {
             on the Mel Robbins Podcast, we realized something:
           </p>
 
-          <p>
-            We apply this logic to almost everything.
-            <br />
-            Except intimacy.
-          </p>
+          <p>We apply this logic to almost everything. Except intimacy.</p>
 
           <p className="text-foreground font-medium">And that's the gap Fiftytwoormore exists to explore.</p>
 
-          <p>
-            Helping us switch from autopilot to intention.
-            <br />
-            Once a week. Low bar. High awareness.
-          </p>
+          <p>Helping us switch from autopilot to intention. Once a week. Low bar. High awareness.</p>
         </div>
 
         <div className="mt-10">
