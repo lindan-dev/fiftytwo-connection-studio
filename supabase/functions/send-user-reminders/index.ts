@@ -4,6 +4,10 @@ import { Resend } from "https://esm.sh/resend@2.0.0";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
+// Rate limiting: 2 emails per second max, so we add 500ms delay between emails
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+const EMAIL_DELAY_MS = 550; // Slightly over 500ms to be safe
+
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
@@ -187,6 +191,9 @@ const handler = async (req: Request): Promise<Response> => {
         .from("beta_signups")
         .update({ first_reminder_sent: true })
         .eq("id", user.id);
+
+      // Rate limit: wait before sending next email
+      await delay(EMAIL_DELAY_MS);
     }
 
     // Second reminder: 7+ days old, not completed, second reminder not sent
@@ -227,6 +234,9 @@ const handler = async (req: Request): Promise<Response> => {
         .from("beta_signups")
         .update({ second_reminder_sent: true })
         .eq("id", user.id);
+
+      // Rate limit: wait before sending next email
+      await delay(EMAIL_DELAY_MS);
     }
 
     // Third reminder: 14+ days old, not completed, third reminder not sent
@@ -267,6 +277,9 @@ const handler = async (req: Request): Promise<Response> => {
         .from("beta_signups")
         .update({ third_reminder_sent: true })
         .eq("id", user.id);
+
+      // Rate limit: wait before sending next email
+      await delay(EMAIL_DELAY_MS);
     }
 
     const summary = {

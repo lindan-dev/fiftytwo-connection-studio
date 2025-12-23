@@ -8,30 +8,60 @@ const WhyTrack = () => {
   return (
     <section className="py-16 px-6 bg-background">
       <div className="container max-w-3xl mx-auto text-center">
-        <h2 className="text-3xl lg:text-4xl font-bold mb-6">We track everything that matters. Except this.</h2>
+        <h2 className="text-3xl lg:text-4xl font-bold mb-8">We track everything that matters. Except this.</h2>
 
-        <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-          Maybe it’s just us. But we tracked the wrong things.
-        </p>
+        <div className="text-left max-w-2xl mx-auto space-y-6 text-muted-foreground leading-relaxed">
+          <p>Maybe it's just us. But we tracked the wrong things.</p>
 
-        <div className="mb-8">
-          <p className="text-muted-foreground mb-4">We track:</p>
-          <div className="flex flex-wrap justify-center gap-3 text-foreground">
-            <span className="px-4 py-2 bg-secondary/50 rounded-full">steps</span>
-            <span className="px-4 py-2 bg-secondary/50 rounded-full">sleep</span>
-            <span className="px-4 py-2 bg-secondary/50 rounded-full">spending</span>
-            <span className="px-4 py-2 bg-secondary/50 rounded-full">workouts</span>
-            <span className="px-4 py-2 bg-secondary/50 rounded-full text-primary font-medium">…but not intimacy</span>
-          </div>
+          <p>
+            Steps. Sleep. Workouts. Spending.<br />
+            We log habits, chase streaks, measure progress.
+          </p>
+
+          <p>
+            Not because tracking is the goal,<br />
+            but because it interrupts autopilot.
+          </p>
+
+          <p>
+            Tracking makes invisible patterns visible.<br />
+            It reminds us why something matters.<br />
+            It turns "we should" into "we noticed."
+          </p>
+
+          <p>
+            Inspired by research on habits, including{" "}
+            <a 
+              href="https://www.melrobbins.com/episode/episode-347/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+            >
+              this conversation
+            </a>{" "}
+            on the Mel Robbins Podcast, we realized something:
+          </p>
+
+          <p>
+            We apply this logic to almost everything.<br />
+            Except intimacy.
+          </p>
+
+          <p className="text-foreground font-medium">
+            And that's the gap Fiftytwoormore exists to explore.
+          </p>
+
+          <p>
+            Helping us switch from autopilot to intention.<br />
+            Once a week. Low bar. High awareness.
+          </p>
         </div>
 
-        <p className="text-lg text-muted-foreground mb-8">
-          Fiftytwoormore is a simple weekly log for couples—no coaching, no quizzes. Just a quiet way to stay connected.
-        </p>
-
-        <Button variant="outline" size="lg" onClick={scrollToFeatures} className="rounded-full">
-          See how it works
-        </Button>
+        <div className="mt-10">
+          <Button variant="outline" size="lg" onClick={scrollToFeatures} className="rounded-full">
+            See how it works
+          </Button>
+        </div>
       </div>
     </section>
   );
