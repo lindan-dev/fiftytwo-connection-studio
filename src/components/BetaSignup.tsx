@@ -21,7 +21,7 @@ const BetaSignup = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [signupCount, setSignupCount] = useState<number | null>(null);
-  const totalSeats = 100;
+  const totalSeats = 53; // Display seats countdown from 53
   useEffect(() => {
     const fetchSignupCount = async () => {
       try {
