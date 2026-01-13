@@ -149,17 +149,36 @@ const handler = async (req: Request): Promise<Response> => {
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
     const now = new Date();
-    const twoDaysAgo = new Date(now.getTime() - FIRST_REMINDER_DAYS * 24 * 60 * 60 * 1000);
-    const sevenDaysAgo = new Date(now.getTime() - SECOND_REMINDER_DAYS * 24 * 60 * 60 * 1000);
-    const fourteenDaysAgo = new Date(now.getTime() - THIRD_REMINDER_DAYS * 24 * 60 * 60 * 1000);
+    
+    // Use calendar days: a signup on Day X is eligible for Day-2 reminder on Day X+2 (any time)
+    // We compare against the END of the target day to include all signups from that calendar day
+    const getEndOfDay = (date: Date) => {
+      const d = new Date(date);
+      d.setUTCHours(23, 59, 59, 999);
+      return d;
+    };
+    
+    const today = new Date(now);
+    today.setUTCHours(0, 0, 0, 0);
+    
+    // Calculate the end of the target signup day for each reminder
+    // E.g., for Day-2 reminder on Jan 13: eligible if signed up on or before Jan 11 23:59:59
+    const twoDaysAgoEnd = getEndOfDay(new Date(today.getTime() - FIRST_REMINDER_DAYS * 24 * 60 * 60 * 1000));
+    const sevenDaysAgoEnd = getEndOfDay(new Date(today.getTime() - SECOND_REMINDER_DAYS * 24 * 60 * 60 * 1000));
+    const fourteenDaysAgoEnd = getEndOfDay(new Date(today.getTime() - THIRD_REMINDER_DAYS * 24 * 60 * 60 * 1000));
+    
+    console.log(`Calendar day calculation - Today: ${today.toISOString()}`);
+    console.log(`First reminder cutoff (day ${FIRST_REMINDER_DAYS}): ${twoDaysAgoEnd.toISOString()}`);
+    console.log(`Second reminder cutoff (day ${SECOND_REMINDER_DAYS}): ${sevenDaysAgoEnd.toISOString()}`);
+    console.log(`Third reminder cutoff (day ${THIRD_REMINDER_DAYS}): ${fourteenDaysAgoEnd.toISOString()}`);
 
-    // First reminder: 2+ days old, not completed, first reminder not sent
+    // First reminder: signed up 2+ calendar days ago, not completed, first reminder not sent
     const { data: firstReminderUsers, error: firstError } = await supabase
       .from("beta_signups")
       .select("id, name, email")
       .eq("app_signup_completed", false)
       .eq("first_reminder_sent", false)
-      .lt("created_at", twoDaysAgo.toISOString());
+      .lte("created_at", twoDaysAgoEnd.toISOString());
 
     if (firstError) {
       console.error("Error fetching first reminder users:", firstError);
@@ -196,13 +215,13 @@ const handler = async (req: Request): Promise<Response> => {
       await delay(EMAIL_DELAY_MS);
     }
 
-    // Second reminder: 7+ days old, not completed, second reminder not sent
+    // Second reminder: signed up 7+ calendar days ago, not completed, second reminder not sent
     const { data: secondReminderUsers, error: secondError } = await supabase
       .from("beta_signups")
       .select("id, name, email")
       .eq("app_signup_completed", false)
       .eq("second_reminder_sent", false)
-      .lt("created_at", sevenDaysAgo.toISOString());
+      .lte("created_at", sevenDaysAgoEnd.toISOString());
 
     if (secondError) {
       console.error("Error fetching second reminder users:", secondError);
@@ -239,13 +258,13 @@ const handler = async (req: Request): Promise<Response> => {
       await delay(EMAIL_DELAY_MS);
     }
 
-    // Third reminder: 14+ days old, not completed, third reminder not sent
+    // Third reminder: signed up 14+ calendar days ago, not completed, third reminder not sent
     const { data: thirdReminderUsers, error: thirdError } = await supabase
       .from("beta_signups")
       .select("id, name, email")
       .eq("app_signup_completed", false)
       .eq("third_reminder_sent", false)
-      .lt("created_at", fourteenDaysAgo.toISOString());
+      .lte("created_at", fourteenDaysAgoEnd.toISOString());
 
     if (thirdError) {
       console.error("Error fetching third reminder users:", thirdError);
