@@ -24,7 +24,6 @@ const Index = () => {
       <TherapyCallout />
       <CalendarPreview />
       <Testimonials />
-      <InlineCTA label="Get early access 🎉" reassurance="Only you and your partner can see this." />
       <GetStarted />
       <FAQ />
       <FinalCTA />

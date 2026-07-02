@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
-
-const APP_URL = "https://app.fiftytwoormore.com";
+import { APP_URL } from "@/lib/appLinks";
 
 interface InlineCTAProps {
   label: string;
