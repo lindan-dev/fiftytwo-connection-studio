@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
-
-const APP_URL = "https://app.fiftytwoormore.com";
+import { APP_URL } from "@/lib/appLinks";
 
 const GetStarted = () => {
   return (
@@ -13,7 +12,7 @@ const GetStarted = () => {
         </div>
 
         <Button size="lg" className="text-lg px-8" onClick={() => window.open(APP_URL, "_blank")}>
-          Get the App ❤️
+          Get Streaky 🔥
         </Button>
 
         <ul className="mt-8 text-sm text-muted-foreground space-y-1">

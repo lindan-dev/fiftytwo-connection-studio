@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
-
-const APP_URL = "https://app.fiftytwoormore.com";
+import { APP_URL } from "@/lib/appLinks";
 
 const FinalCTA = () => {
   return <section className="py-12 px-6">
@@ -13,7 +12,7 @@ const FinalCTA = () => {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button size="lg" className="text-lg px-8" onClick={() => window.open(APP_URL, "_blank")}>
-            Get the App ❤️
+            Get Streaky 🔥
           </Button>
         </div>
         <p className="mt-4 text-sm text-muted-foreground">

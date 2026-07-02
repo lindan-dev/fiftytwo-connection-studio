@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import appMockup from "@/assets/app-mockup.png";
-
-const APP_URL = "https://app.fiftytwoormore.com";
+import { APP_URL } from "@/lib/appLinks";
 
 const Hero = () => {
   const scrollToSection = (id: string) => {
@@ -25,7 +24,7 @@ const Hero = () => {
                 className="text-lg px-8"
                 onClick={() => window.open(APP_URL, "_blank")}
               >
-                Get the App ❤️
+                Get Streaky 🔥
               </Button>
               <Button
                 size="lg"
