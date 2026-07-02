@@ -1,20 +1,16 @@
 import { Button } from "@/components/ui/button";
 
+const APP_URL = "https://app.fiftytwoormore.com";
+
 interface InlineCTAProps {
   label: string;
   reassurance?: string;
 }
 
 const InlineCTA = ({ label, reassurance }: InlineCTAProps) => {
-  const scrollToSignup = () => {
-    document.getElementById("beta-signup")?.scrollIntoView({
-      behavior: "smooth",
-    });
-  };
-
   return (
     <div className="py-12 px-6 text-center">
-      <Button size="lg" className="text-lg px-8" onClick={scrollToSignup}>
+      <Button size="lg" className="text-lg px-8" onClick={() => window.open(APP_URL, "_blank")}>
         {label}
       </Button>
       {reassurance && (

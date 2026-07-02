@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import appMockup from "@/assets/app-mockup.png";
 
+const APP_URL = "https://app.fiftytwoormore.com";
+
 const Hero = () => {
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -21,9 +23,9 @@ const Hero = () => {
               <Button
                 size="lg"
                 className="text-lg px-8"
-                onClick={() => scrollToSection("beta-signup")}
+                onClick={() => window.open(APP_URL, "_blank")}
               >
-                Join the Closed Beta 🔥
+                Get the App ❤️
               </Button>
               <Button
                 size="lg"
