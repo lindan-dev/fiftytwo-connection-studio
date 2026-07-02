@@ -11,6 +11,14 @@ Deno.serve(async (req) => {
     return new Response(null, { headers: corsHeaders })
   }
 
+  const expected = `Bearer ${Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')}`;
+  if (req.headers.get('authorization') !== expected) {
+    return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+      status: 401,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
+  }
+
   try {
     // Create Supabase client with service role key to bypass RLS
     const supabaseClient = createClient(
@@ -33,9 +41,9 @@ Deno.serve(async (req) => {
       }
     )
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    console.error('get-beta-signups-count error:', error);
     return new Response(
-      JSON.stringify({ error: errorMessage, count: 0 }),
+      JSON.stringify({ error: 'Internal server error', count: 0 }),
       { 
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         status: 200 // Return 200 even on error so frontend doesn't break
