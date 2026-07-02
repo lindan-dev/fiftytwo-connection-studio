@@ -7,7 +7,7 @@ import Features from "@/components/Features";
 import TherapyCallout from "@/components/TherapyCallout";
 import CalendarPreview from "@/components/CalendarPreview";
 import Testimonials from "@/components/Testimonials";
-import BetaSignup from "@/components/BetaSignup";
+import GetStarted from "@/components/GetStarted";
 import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
@@ -25,7 +25,7 @@ const Index = () => {
       <CalendarPreview />
       <Testimonials />
       <InlineCTA label="Get early access 🎉" reassurance="Only you and your partner can see this." />
-      <BetaSignup />
+      <GetStarted />
       <FAQ />
       <FinalCTA />
       <Footer />

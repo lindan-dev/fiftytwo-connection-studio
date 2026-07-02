@@ -29,7 +29,7 @@ const FAQ = () => {
     },
     {
       question: "What if my partner isn't into apps?",
-      answer: "Fair question! The app is designed to be simple and unintrusive. You can both use it, or just one of you can track for both. Whatever works.",
+      answer: "This one's built for existing couples, not for finding your other half. If that's still on your to-do list, we hear Tinder and Hinge are doing great business 😉 Come back once you've got your person - we'll be here.",
     },
     {
       question: "Can we customize our goals?",
