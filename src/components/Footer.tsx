@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -10,6 +12,10 @@ const Footer = () => {
           <a href="mailto:fiftytwoormore@lindaninc.com" className="hover:text-foreground transition-colors">
             fiftytwoormore@lindaninc.com
           </a>
+          {" · "}
+          <Link to="/privacy" className="hover:text-foreground transition-colors">
+            Privacy Policy
+          </Link>
         </p>
       </div>
     </footer>
