@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { APP_URL } from "@/lib/appLinks";
 
 // Bridges Supabase auth emails (confirmation, password reset) and shared
 // invite links to the native app's custom URL scheme (fiftytwoormore://).
@@ -75,11 +76,15 @@ export default function OpenApp() {
               To continue, open this link on a phone with fiftytwoormore installed.
             </p>
             <div className="pt-2">
-              {/* Placeholder until the app is publicly available - swap
-                  for a real App Store / TestFlight link when ready. */}
-              <Button disabled variant="secondary" className="rounded-full opacity-60">
-                Get the app (coming soon)
-              </Button>
+              {/* Real App Store link now that the app has a listing ID.
+                  Works even before the app finishes review - App Store
+                  Connect shows a "coming soon" style page for pending
+                  listings. */}
+              <a href={APP_URL}>
+                <Button className="rounded-full bg-[hsl(var(--coral))] hover:bg-[hsl(var(--coral))]/90 text-white">
+                  Get the app
+                </Button>
+              </a>
             </div>
           </>
         )}
