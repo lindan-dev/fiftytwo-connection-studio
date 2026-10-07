@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { SUPPORT_URL } from "@/lib/appLinks";
 
 const FAQ = () => {
   const faqs = [
@@ -26,6 +27,23 @@ const FAQ = () => {
     {
       question: "How much does it cost?",
       answer: "The beta is completely free. We'll figure out pricing later, but it'll always be reasonable. We're building this for couples, not investors.",
+    },
+    {
+      question: "Can I support the project?",
+      answer: (
+        <>
+          Thank you, that means a lot. Supporting us is entirely optional, and you can do it{" "}
+          <a
+            href={SUPPORT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary font-medium underline underline-offset-4 hover:opacity-80"
+          >
+            right here
+          </a>
+          .
+        </>
+      ),
     },
     {
       question: "What if my partner isn't into apps?",
@@ -68,3 +86,4 @@ const FAQ = () => {
 };
 
 export default FAQ;
+
