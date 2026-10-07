@@ -5,3 +5,9 @@
 // haven't finished review yet, so it's safe to point here now rather
 // than waiting for the app to be fully live.
 export const APP_URL = "https://apps.apple.com/app/id6786413171";
+
+// Optional "support the project" payment link. Website only: it must NOT be
+// linked from inside the iOS app (App Review Guideline 3.1.1 treats an external
+// payment link in the app as an in-app purchase).
+export const SUPPORT_URL = "https://buy.stripe.com/14AbJ34zR6ofcci1fJ5EY00";
+

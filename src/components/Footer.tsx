@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { SUPPORT_URL } from "@/lib/appLinks";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -16,6 +17,15 @@ const Footer = () => {
           <Link to="/privacy" className="hover:text-foreground transition-colors">
             Privacy Policy
           </Link>
+          {" · "}
+          <a
+            href={SUPPORT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-foreground transition-colors"
+          >
+            Support our project
+          </a>
         </p>
       </div>
     </footer>
@@ -23,3 +33,4 @@ const Footer = () => {
 };
 
 export default Footer;
+
