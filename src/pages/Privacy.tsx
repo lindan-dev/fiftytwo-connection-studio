@@ -55,6 +55,9 @@ export default function Privacy() {
               <li>
                 <strong>Push notification token:</strong> a device identifier used to deliver notifications, if you enable them
               </li>
+              <li>
+                <strong>Crash reports:</strong> if the app crashes or runs into an unexpected error, a technical report is sent to our error-reporting provider (see "Data storage" below). It contains the error message and technical details such as device model, operating system version and app version
+              </li>
             </ul>
           </section>
 
@@ -88,6 +91,11 @@ export default function Privacy() {
             <p className="text-[hsl(var(--warm-text))]">
               Your data is stored with Supabase, our backend infrastructure provider, using
               industry-standard security practices including row-level access controls.
+            </p>
+            <p className="text-[hsl(var(--warm-text))]">
+              Crash reports are handled by Sentry (sentry.io), hosted in the EU. We do not attach your
+              account, name, email, notes or location to these reports, and we use them only to find
+              and fix bugs.
             </p>
           </section>
 
@@ -126,4 +134,5 @@ export default function Privacy() {
     </div>
   );
 }
+
 
