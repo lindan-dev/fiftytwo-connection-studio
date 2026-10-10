@@ -27,7 +27,7 @@ export default function Privacy() {
               Privacy Policy
             </h1>
             <p className="text-sm text-[hsl(var(--warm-text-light))]">
-              Last updated: July 2026
+              Last updated: October 2026
             </p>
           </div>
 
@@ -104,6 +104,11 @@ export default function Privacy() {
               . If you are located in the EU/EEA, you have additional rights under GDPR, including
               the right to access, correct, or export your data.
             </p>
+            <p className="text-[hsl(var(--warm-text))] mt-3">
+              Your activity history belongs to you and your partner together. If either of you
+              deletes their account or disconnects from the other, the shared history is deleted
+              for both of you, so it never remains with only one of you.
+            </p>
           </section>
 
           <section className="space-y-4">
@@ -121,3 +126,4 @@ export default function Privacy() {
     </div>
   );
 }
+
