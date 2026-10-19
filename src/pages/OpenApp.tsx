@@ -18,6 +18,11 @@ import AppStoreBadge from "@/components/AppStoreBadge";
 //   - #access_token=...&type=signup        -> fiftytwoormore://email-confirmed#...
 export default function OpenApp() {
   const [showFallback, setShowFallback] = useState(false);
+  // True when the incoming link was an email-confirmation redirect
+  // (hash contains access_token). The fallback copy for that case is
+  // different: the user's email is already confirmed, they just need to
+  // get into the app on their phone.
+  const [isConfirmation, setIsConfirmation] = useState(false);
 
   useEffect(() => {
     const search = window.location.search; // "?type=connect&code=XXXX"
@@ -33,6 +38,7 @@ export default function OpenApp() {
     } else if (hash.includes("access_token")) {
       // Covers signup confirmation and any other Supabase auth redirect
       // that isn't explicitly a recovery link.
+      setIsConfirmation(true);
       deepLink = `fiftytwoormore://email-confirmed${hash}`;
     }
 
@@ -70,10 +76,12 @@ export default function OpenApp() {
         ) : (
           <>
             <h1 className="text-2xl font-medium text-[hsl(var(--warm-text))]">
-              Almost there!
+              {isConfirmation ? "You’re confirmed! 🎉" : "Almost there!"}
             </h1>
             <p className="text-[hsl(var(--warm-text-light))] text-sm">
-              To continue, open this link on a phone with fiftytwoormore installed.
+              {isConfirmation
+                ? "Your email is confirmed. Open fiftytwoormore on your phone and log in to continue."
+                : "To continue, open this link on a phone with fiftytwoormore installed."}
             </p>
             <div className="pt-2 flex justify-center">
               {/* Now live on the App Store - the real, recognizable
