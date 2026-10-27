@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Heart } from "lucide-react";
 import { APP_URL } from "@/lib/appLinks";
 import AppStoreBadge from "@/components/AppStoreBadge";
+import { getDeepLink } from "@/lib/deepLink";
 
 // Bridges Supabase auth emails (confirmation, password reset) and shared
 // invite links to the native app's custom URL scheme (fiftytwoormore://).
@@ -12,10 +13,11 @@ import AppStoreBadge from "@/components/AppStoreBadge";
 // the app-opening redirect itself, and falls back to a clear message if
 // that doesn't visibly work within a couple seconds.
 //
-// Handles three cases, detected from the URL Supabase/the app puts here:
+// Handles four cases (see src/lib/deepLink.ts):
 //   - ?type=connect&code=XXXXXXXX          -> fiftytwoormore://connect?code=XXXXXXXX
 //   - #access_token=...&type=recovery      -> fiftytwoormore://reset-password#...
 //   - #access_token=...&type=signup        -> fiftytwoormore://email-confirmed#...
+//   - ?type=open                           -> fiftytwoormore://   (links in our emails: just open the app)
 export default function OpenApp() {
   const [showFallback, setShowFallback] = useState(false);
   // True when the incoming link was an email-confirmation redirect
@@ -23,24 +25,13 @@ export default function OpenApp() {
   // different: the user's email is already confirmed, they just need to
   // get into the app on their phone.
   const [isConfirmation, setIsConfirmation] = useState(false);
+  // True for the plain "open the app" link used by the emails we send.
+  const [isOpenLink, setIsOpenLink] = useState(false);
 
   useEffect(() => {
-    const search = window.location.search; // "?type=connect&code=XXXX"
-    const hash = window.location.hash; // "#access_token=...&type=recovery"
-    const params = new URLSearchParams(search);
-
-    let deepLink: string | null = null;
-
-    if (params.get("type") === "connect" && params.get("code")) {
-      deepLink = `fiftytwoormore://connect?code=${encodeURIComponent(params.get("code")!)}`;
-    } else if (hash.includes("type=recovery")) {
-      deepLink = `fiftytwoormore://reset-password${hash}`;
-    } else if (hash.includes("access_token")) {
-      // Covers signup confirmation and any other Supabase auth redirect
-      // that isn't explicitly a recovery link.
-      setIsConfirmation(true);
-      deepLink = `fiftytwoormore://email-confirmed${hash}`;
-    }
+    const { deepLink, kind } = getDeepLink(window.location.search, window.location.hash);
+    if (kind === "confirmation") setIsConfirmation(true);
+    if (kind === "open") setIsOpenLink(true);
 
     if (!deepLink) {
       setShowFallback(true);
@@ -76,12 +67,14 @@ export default function OpenApp() {
         ) : (
           <>
             <h1 className="text-2xl font-medium text-[hsl(var(--warm-text))]">
-              {isConfirmation ? "You’re confirmed! 🎉" : "Almost there!"}
+              {isConfirmation ? "You’re confirmed! 🎉" : isOpenLink ? "Need the app?" : "Almost there!"}
             </h1>
             <p className="text-[hsl(var(--warm-text-light))] text-sm">
               {isConfirmation
                 ? "Your email is confirmed. Open fiftytwoormore on your phone and log in to continue."
-                : "To continue, open this link on a phone with fiftytwoormore installed."}
+                : isOpenLink
+                  ? "If fiftytwoormore didn’t open, it may not be installed yet. Download it here, or open this link on your phone."
+                  : "To continue, open this link on a phone with fiftytwoormore installed."}
             </p>
             <div className="pt-2 flex justify-center">
               {/* Now live on the App Store - the real, recognizable
@@ -94,3 +87,4 @@ export default function OpenApp() {
     </div>
   );
 }
+
