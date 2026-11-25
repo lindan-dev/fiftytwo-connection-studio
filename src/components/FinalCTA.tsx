@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { APP_URL } from "@/lib/appLinks";
+import { getAppUrlWithCt } from "@/lib/appLinks";
 
 const FinalCTA = () => {
   return <section className="py-12 px-6">
@@ -11,7 +11,7 @@ const FinalCTA = () => {
           Making time for what matters, one week at a time.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button size="lg" className="text-lg px-8" onClick={() => window.open(APP_URL, "_blank")}>
+          <Button size="lg" className="text-lg px-8" onClick={() => window.open(getAppUrlWithCt(), "_blank")}>
             Get Streaky 🔥
           </Button>
         </div>

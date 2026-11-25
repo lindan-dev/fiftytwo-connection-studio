@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import appMockup from "@/assets/app-mockup.png";
-import { APP_URL } from "@/lib/appLinks";
+import { getAppUrlWithCt } from "@/lib/appLinks";
 
 const Hero = () => {
   const scrollToSection = (id: string) => {
@@ -22,7 +22,7 @@ const Hero = () => {
               <Button
                 size="lg"
                 className="text-lg px-8"
-                onClick={() => window.open(APP_URL, "_blank")}
+                onClick={() => window.open(getAppUrlWithCt(), "_blank")}
               >
                 Get Streaky 🔥
               </Button>

@@ -6,6 +6,21 @@
 // than waiting for the app to be fully live.
 export const APP_URL = "https://apps.apple.com/app/id6786413171";
 
+// App Store link with a campaign tag ("ct") appended. The value comes from the
+// ct query parameter on the landing page URL (e.g. /?ct=newsletter); when the
+// parameter is missing or empty we fall back to "website". The rest of the
+// App Store URL is left untouched.
+export function getAppUrlWithCt(): string {
+  const raw =
+    typeof window === "undefined"
+      ? null
+      : new URLSearchParams(window.location.search).get("ct");
+  const ct = raw && raw.trim() ? raw.trim() : "website";
+  const url = new URL(APP_URL);
+  url.searchParams.set("ct", ct);
+  return url.toString();
+}
+
 // Optional "support the project" payment link. Website only: it must NOT be
 // linked from inside the iOS app (App Review Guideline 3.1.1 treats an external
 // payment link in the app as an in-app purchase).

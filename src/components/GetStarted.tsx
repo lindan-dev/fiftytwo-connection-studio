@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { APP_URL } from "@/lib/appLinks";
+import { getAppUrlWithCt } from "@/lib/appLinks";
 
 const GetStarted = () => {
   return (
@@ -11,7 +11,7 @@ const GetStarted = () => {
           <p className="font-semibold">It's private, and it's free.</p>
         </div>
 
-        <Button size="lg" className="text-lg px-8" onClick={() => window.open(APP_URL, "_blank")}>
+        <Button size="lg" className="text-lg px-8" onClick={() => window.open(getAppUrlWithCt(), "_blank")}>
           Get Streaky 🔥
         </Button>
 
